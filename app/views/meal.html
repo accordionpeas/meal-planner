@@ -1,0 +1,30 @@
+{% extends "../layouts/default.html" %}
+
+{% block "body" %}
+
+	<h1>{{meal.name}} - {{meal.type}}</h1>
+
+	<p><a href="/meals/{{meal._id.toString()}}/edit">Edit</a></p>
+	<p><a href="/meals/{{meal._id.toString()}}/delete">Delete</a></p>
+
+	<h2>Ingredients</h2>
+
+	<ul>
+		{% for i, ingredient in meal.ingredients %}
+
+			<li>{{ingredient.name}} - {{ingredient.amount}}</li>
+
+		{% endfor %}
+	</ul>
+
+	<h2>Method</h2>
+
+	<ol>
+		{% for i, step in meal.method %}
+
+			<li>{{step}}</li>
+
+		{% endfor %}
+	</ol>
+
+{% endblock %}

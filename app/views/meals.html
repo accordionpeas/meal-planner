@@ -1,0 +1,41 @@
+{% extends "../layouts/default.html" %}
+
+{% block "body" %}
+
+	<h1>Meals</h1>
+
+	<p><a href="/meals/create">Add Meal</a></p>
+
+	<h2>Lunches</h2>
+
+	<ul>
+
+		{% for i, meal in meals %}
+
+			{% if meal.type === 'lunch' %}
+
+				<li><a href="/meals/{{meal._id.toString()}}">{{meal.name}}</a></li>
+
+			{% endif %}
+
+		{% endfor %}
+
+	</ul>
+
+	<h2>Dinners</h2>
+
+	<ul>
+
+		{% for i, meal in meals %}
+
+			{% if meal.type === 'dinner' %}
+
+				<li><a href="/meals/{{meal._id.toString()}}">{{meal.name}}</a></li>
+
+			{% endif %}
+			
+		{% endfor %}
+
+	</ul>
+
+{% endblock %}

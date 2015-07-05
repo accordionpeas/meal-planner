@@ -1,0 +1,73 @@
+{% extends "../layouts/default.html" %}
+
+{% block "body" %}
+
+	<h1>Add Meal</h1>
+
+	<form action="/meals/create" method="POST">
+
+		<div class="question">
+			<label for="name">Name</label>
+			<input type="text" id="name" name="name">
+		</div>
+
+		<div class="question">
+			<label for="type">Type</label>
+			<select id="type" name="type">
+				<option value="lunch">Lunch</option>
+				<option value="dinner">Dinner</option>
+			</select>
+		</div>
+
+		<div class="addMoreSection" data-last-index="9">
+
+			<h2>Ingredients</h2>
+
+			{% for i in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] %}
+
+				<div class="addMoreRepeat">
+
+					<div class="question">
+						<label for="ingredients[{{i}}][name]">Name</label>
+						<input type="text" id="ingredients[{{i}}][name]" name="ingredients[{{i}}][name]" placeholder="e.g. vegetbale stock / olive oil / red onion">
+					</div>
+
+					<div class="question">
+						<label for="ingredients[{{i}}][amount]">Amount</label>
+						<input type="text" id="ingredients[{{i}}][amount]" name="ingredients[{{i}}][amount]" placeholder="e.g. 400ml / 1 tsp / 0.5">
+					</div>
+
+				</div>
+
+			{% endfor %}
+
+			<p><a class="addMore" href="#">Add more ingredients</a></p>
+
+		</div>
+
+		<div class="addMoreSection" data-last-index="4">
+
+			<h2>Method</h2>
+
+			{% for i in [0, 1, 2, 3, 4] %}
+
+				<div class="addMoreRepeat">
+
+					<div class="question">
+						<label for="method[{{i}}]">Step</label>
+						<textarea id="method[{{i}}]" name="method[{{i}}]"></textarea>
+					</div>
+
+				</div>
+
+			{% endfor %}
+
+			<p><a class="addMore" href="#">Add more steps</a></p>
+
+		</div>
+
+		<input type="submit">
+
+	</form>
+
+{% endblock %}

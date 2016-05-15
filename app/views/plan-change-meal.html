@@ -1,0 +1,18 @@
+{% extends "../layouts/default.html" %}
+
+{% block "body" %}
+
+	<h1>Choose a meal</h1>
+
+	<form action="/plans/{{plan._id.toString()}}/changeMeal" method="POST">
+    <select name="mealId">
+      {% for i, meal in meals %}
+        <option value="{{meal._id.toString()}}">{{meal.name}}</option>
+      {% endfor %}
+    </select>
+    <input type="hidden" name="day" value="{{day}}">
+    <input type="hidden" name="type" value="{{type}}">
+		<input type="submit" value="Submit">
+	</form>
+
+{% endblock %}

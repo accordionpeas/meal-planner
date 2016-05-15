@@ -1,0 +1,17 @@
+{% extends "../layouts/default.html" %}
+
+{% block "body" %}
+
+	<h1>Ingredients</h1>
+
+	<ul>
+
+		{% for i, ingredient in ingredients %}
+
+				<li>{{ingredient.name}} - {{ingredient.amount}}</li>
+
+		{% endfor %}
+
+	</ul>
+
+{% endblock %}

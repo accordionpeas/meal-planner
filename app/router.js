@@ -5,12 +5,52 @@ var renderer = require('./renderer'),
 module.exports = {
 
 	start: function(app){
-		
+
 		app
 
 			.all('*', function(req, res, next){
 				res.header('content-type', 'text/html');
 				next();
+			})
+
+			.get('/plans', function(req, res){
+				plans.index(req, res);
+			})
+
+			.get('/plans/generate', function(req, res){
+				plans.generate(req, res);
+			})
+
+			.get('/plans/:id', function(req, res){
+				plans.get(req, res);
+			})
+
+			.get('/plans/:id/generateMeal', function(req, res){
+				plans.generateOne(req, res);
+			})
+
+			.get('/plans/:id/changeMeal', function(req, res){
+				plans.mealOptions(req, res);
+			})
+
+			.post('/plans/:id/changeMeal', function(req, res){
+				plans.changeMeal(req, res);
+			})
+
+			.get('/plans/:id/removeMeal', function(req, res){
+				plans.removeOne(req, res);
+			})
+
+			.get('/plans/:id/delete', function(req, res){
+				plans.removeConfirmation(req, res);
+			})
+
+			.get('/plans/:id/ingredients', function(req, res){
+				plans.ingredients(req, res);
+			})
+
+			.post('/plans/:id/delete', function(req, res){
+				plans.remove(req, res);
 			})
 
 			.get('/meals', function(req, res){
@@ -30,11 +70,11 @@ module.exports = {
 			})
 
 			.get('/meals/:id/delete', function(req, res){
-				meals.deleteConfirmation(req, res);
+				meals.removeConfirmation(req, res);
 			})
 
 			.post('/meals/:id/delete', function(req, res){
-				meals.delete(req, res);
+				meals.remove(req, res);
 			})
 
 			.get('/meals/:id', function(req, res){

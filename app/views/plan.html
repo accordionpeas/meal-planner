@@ -1,0 +1,40 @@
+{% extends "../layouts/default.html" %}
+
+{% macro meal(meal, index, type) %}
+	<p>{{type}}:
+			{% if !meal %}
+				None
+			{% else %}
+					<a href="/meals/{{meal._id.toString()}}">{{meal.name}}</a>
+			{% endif %}
+			 -
+			<a href="/plans/{{plan._id.toString()}}/generateMeal?day={{index}}&amp;type={{type}}">Generate</a> -
+			<a href="/plans/{{plan._id.toString()}}/changeMeal?day={{index}}&amp;type={{type}}">Change</a> -
+			<a href="/plans/{{plan._id.toString()}}/removeMeal?day={{index}}&amp;type={{type}}">Remove</a>
+	</p>
+{% endmacro%}
+
+{% block "body" %}
+
+	<h1>Plan - {{plan.date.toString()}}</h1>
+
+	<p><a href="/plans/{{plan._id.toString()}}/delete">Delete</a></p>
+	<p><a href="/plans/{{plan._id.toString()}}/ingredients">View ingredients</a></p>
+
+  {% set weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
+
+	<ul>
+
+		{% for i, day in plan.days %}
+
+				<li>
+            <h2>{{weekdays[i]}}</h2>
+						{{ meal(day.lunch, i, 'lunch') }}
+						{{ meal(day.dinner, i, 'dinner') }}
+        </li>
+
+		{% endfor %}
+
+	</ul>
+
+{% endblock %}
